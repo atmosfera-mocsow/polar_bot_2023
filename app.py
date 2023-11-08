@@ -4,7 +4,7 @@ from datetime import datetime
 import redis
 from user import User
 
-token = ""
+token = "6847037773:AAFKjGqiCUTzxQmqVFbKlBJuYXyDMQP3Jn8"
 starttime = datetime(2023, 11, 7, 12)
 
 ### ОБЯЗАТЕЛЬНО УКАЗЫВАТЬ ПЕРЕД СЛЕДУЮЩЕЙ ИТЕРАЦИЕЙ ИГРЫ ###

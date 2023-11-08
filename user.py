@@ -18,7 +18,8 @@ class User():
 
     def save(self):
         ### Это нельзя/бесполезно вызывать
-        self.redis.rpush(self.id, self.stage, self.json.dumps(self.stages))
+        self.redis.lset(self.id, 0, self.stage)
+        self.redis.lset(self.id, 1, self.json.dumps(self.stages))
 
     def genStages(self):
         ### Сюда тоже не лезь
@@ -38,7 +39,7 @@ class User():
     
     def isEnd(self):
         ### Если True — игрок прошёл ещё не все этапы
-        if self.stage > int(self.redis.get("locations")):
+        if self.stage >= int(self.redis.get("locations")):
             return True
         else:
             return False

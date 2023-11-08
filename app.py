@@ -39,6 +39,7 @@ def start_message(message):
     bot.send_message(message.chat.id, "Привет ✌️ ")
     bot.send_message(message.chat.id, "Для начала игры нажмите /run")
     print(message.chat.id)
+        
 
 @bot.message_handler(commands=['run'])
 def run_m(message):
@@ -47,12 +48,14 @@ def run_m(message):
         user = User(r, int(message.from_user.id))
         if user.inGame():
             ingame_m(message)
+        elif user.isEnd():
+            bot.send_message(message.chat.id, "Посмеялись, а теперь бегом на финиш!")
         else:
             bot.send_message(message.chat.id, "Сейчас начнём!")
             bot.send_message(message.chat.id, f"Следующий этап — # {locations[user.location()]['location']}")
             bot.send_message(message.chat.id, "Пройдите этап и получите пароль для следующего уровня!")
     else:
-        print("Ignored by Time")
+        bot.send_message(message.chat.id, "Игра ещё не началась")
     del user
 
 

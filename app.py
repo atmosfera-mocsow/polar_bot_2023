@@ -3,12 +3,12 @@ from telebot import types
 from datetime import datetime
 import redis
 from user import User
+import sys
 
-token = "6847037773:AAFKjGqiCUTzxQmqVFbKlBJuYXyDMQP3Jn8"
+prefix = sys.argv[1]
+token = sys.argv[2]
+
 starttime = datetime(2023, 11, 7, 12)
-
-### ОБЯЗАТЕЛЬНО УКАЗЫВАТЬ ПЕРЕД СЛЕДУЮЩЕЙ ИТЕРАЦИЕЙ ИГРЫ ###
-prefix = "tg1"
 
 r = redis.Redis(host='localhost', port=6379, decode_responses=True)
 r.set("prefix", str(prefix))

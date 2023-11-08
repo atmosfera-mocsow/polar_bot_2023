@@ -46,10 +46,10 @@ def run_m(message):
     # Тут по идее надо тупо отбивать всё, что не является персональным чатом, но лан
     if datetime.now() > starttime:
         user = User(r, int(message.from_user.id))
-        if user.inGame():
+        if user.isEnd():
+            bot.send_message(message.chat.id, "Посмеялись, а теперь бегом на финиш!")    
+        elif user.inGame():
             ingame_m(message)
-        elif user.isEnd():
-            bot.send_message(message.chat.id, "Посмеялись, а теперь бегом на финиш!")
         else:
             bot.send_message(message.chat.id, "Сейчас начнём!")
             bot.send_message(message.chat.id, f"Следующий этап — # {locations[user.location()]['location']}")

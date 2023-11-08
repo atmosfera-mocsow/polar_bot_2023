@@ -6,13 +6,13 @@ class User():
         userId = str(prefix)+str(id)
 
         self.ingame = True
+        self.id = userId
         self.redis = redis
 
         if not redis.lrange(userId, 0, 2):
             redis.rpush(userId, 0, self.genStages())
             self.ingame = False
 
-        self.id = userId
         self.stage = int(redis.lrange(userId, 0, 2)[0])
         self.stages = self.json.loads(redis.lrange(userId, 0, 2)[1])
 
